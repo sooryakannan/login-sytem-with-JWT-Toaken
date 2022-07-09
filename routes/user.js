@@ -58,12 +58,31 @@ router.post('/login',authencate,(req,res)=>{
 router.get('/view',(req,res)=>{
     const document = verifyToken(req.body.token);
     if(document !== false){
-        console.log("in view",document);
-        res.json(document);
-        
+            auth.findOne({email:document},(err,data)=>{
+                if(data){
+                    res.json({
+                        email:data.email,
+                        username:data.username,
+                        age:data.age,
+                        location:data.location,
+                        domain:data.domain
+                    })
+                    res.end();
+                }else{
+                    res.json({"error":"user not found"});
+                }
+            })
     }else{
-        res.json({error:"enter a valid jwt token"});
+
     }
+    // if(document !== false){
+    //     console.log("in view",document);
+    //     res.json(document);
+        
+    // }else{
+    //     res.json({error:"enter a valid jwt token"});
+    // }
+
 })
 
 

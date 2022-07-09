@@ -16,19 +16,12 @@ const generateToken = (username,email,age,location,domain)=>{
 
 const verifyToken =  (token)=>{
     const payload = jwt.verify(token,process.env.ACCESS_TOKEN_SECRET);
-    auth.findOne({email:payload.email},(err,data)=>{
-        if(err){
-            throw new Error("cant find");
-        }
-        if(data){
-            console.log("the data is " + data);
-            return {username:data.username};
-        }else{
-            return false;
-        }
-    });
-   
-
+    if(payload){
+        return payload.email;
+    }else{
+        return false;
+    }
+    
 }
 
 
