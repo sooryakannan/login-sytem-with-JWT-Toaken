@@ -1,7 +1,7 @@
 GET http://localhost:3000/post
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoia2FydGhpa2EiLCJpYXQiOjE2NTcyNjAyOTd9.L80zyzLe2ZHAhknHLgVdjvD4lD5x4y7ydi80qrjALJo
 
-###
+### create user
 
 POST http://localhost:3000/user/signup
 Content-Type: application/json
@@ -15,20 +15,20 @@ Content-Type: application/json
     "domain":"11 std"
 }
 
-###
+###login
 POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    "email":"karthika@wbcsoftwarelab.com",
+    "email":"soorya@wbcsoftwarelab.com",
     "password":"password"
 }
 
-###
+###view send with toaken
 GET http://localhost:3000/user/view
 Content-Type: application/json
 
 {
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoia2FydGhpa2EiLCJlbWFpbCI6ImthcnRoaWthQHdiY3NvZnR3YXJlbGFiLmNvbSIsImFnZSI6MTYsImxvY2F0aW9uIjoicGFpeXVyIiwiZG9tYWluIjoiMTEgc3RkIiwiaWF0IjoxNjU3MjgyNzQzfQ.rWGnHLiuvxI9Qk5wqbdXklo7ZwCiPEWyfwMy9Z2sRNg"
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoic29vcnlhIiwiZW1haWwiOiJzb29yeWFAd2Jjc29mdHdhcmVsYWIuY29tIiwiYWdlIjoyMywibG9jYXRpb24iOiJ0aGlydXBwYXRodXIiLCJkb21haW4iOiJEZXZlbG9wZXIiLCJpYXQiOjE2NTczNDMzNDB9.t7KDjfGSxg9BeHyPCkOPYsdatUFStxN-T70GanGTw0E"
   
 }

@@ -9,7 +9,7 @@ const {generateToken,verifyToken} = require('../services/tokenservice')
 //middleware to hash the password
 
 
-
+//this route is used to signup user
 router.post('/signup',hash,(req,res)=>{
 
     try{
@@ -41,7 +41,7 @@ router.post('/signup',hash,(req,res)=>{
         }
     }
 })
-
+//this route is used to login user
 router.post('/login',authencate,(req,res)=>{
     let username = req.name;
     let email = req.email;
@@ -54,35 +54,28 @@ router.post('/login',authencate,(req,res)=>{
     res.end();
    
 })
-
-router.get('/view',(req,res)=>{
-    const document = verifyToken(req.body.token);
-    if(document !== false){
-            auth.findOne({email:document},(err,data)=>{
-                if(data){
+//this route is used to view the user details
+router.get('/view', (req, res) => {
+    verifyToken(req.body.token, (response) => {
+        if (response !== (undefined || false)) {
+            auth.findOne({ email: response }, (err, data) => {
+                if (data) {
                     res.json({
-                        email:data.email,
-                        username:data.username,
-                        age:data.age,
-                        location:data.location,
-                        domain:data.domain
+                        email: data.email,
+                        username: data.username,
+                        age: data.age,
+                        location: data.location,
+                        domain: data.domain
                     })
                     res.end();
-                }else{
-                    res.json({"error":"user not found"});
+                } else {
+                    res.json({ "error": "user not found" });
                 }
             })
-    }else{
-
-    }
-    // if(document !== false){
-    //     console.log("in view",document);
-    //     res.json(document);
-        
-    // }else{
-    //     res.json({error:"enter a valid jwt token"});
-    // }
-
+        } else {
+            res.json({ "error": "wrong jwt toaken please enter valid JWT toaken" })
+        }
+    });
 })
 
 
